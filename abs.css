@@ -1,0 +1,65 @@
+:root {
+	--light_red: #FFDDDD;
+	--light_blue: #DDDDFF;
+	--light_green: #DDFFDD;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+div {
+	border: 1px solid black;
+
+}
+
+
+
+.item0 {
+	position: absolute;
+	width: 20%;
+	height: 85vh;
+	background-color: var(--light_red);
+	font-size: 1vw;
+}
+
+.item1 {
+	position: absolute;
+	width: 80%;
+	height: 15vh;
+	left: 20%;
+	background-color: var(--light_blue);
+	font-size: 1vw;
+	margin-left: 1px;
+}
+
+.item3 {
+	font-size: 1vw;
+	position: absolute;
+	width: 60%;
+	top: 15vh;
+	left: 20%;
+	height: 5vh;
+	background-color: var(--light_green);
+	margin-left: 1px;
+}
+
+.item4{
+	position: absolute;
+	width: 20%;
+	height: 70vh;
+	background-color: var(--light_green);
+	top: 15vh;
+	left: 80%;
+	font-size: 1vw;
+}
+
+.item5 {
+	font-size: 1vw;
+	position: absolute;
+	width: 100%;
+	height: 15vh;
+	top: 85vh;
+	background-color: var(--light_blue);
+}
