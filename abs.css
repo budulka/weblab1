@@ -68,3 +68,10 @@ div {
 	background-color: var(--light_blue);
 	line-height: 15vh;
 }
+
+.absol {
+	position: absolute;
+	top: 30vh;
+	left: 28%;
+}
+
