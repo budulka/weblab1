@@ -11,7 +11,7 @@ body {
 
 div {
 	border: 1px solid black;
-
+	text-align: center;
 }
 
 
@@ -22,6 +22,7 @@ div {
 	height: 85vh;
 	background-color: var(--light_red);
 	font-size: 1vw;
+	line-height: 80vh;
 }
 
 .item1 {
@@ -32,6 +33,7 @@ div {
 	background-color: var(--light_blue);
 	font-size: 1vw;
 	margin-left: 1px;
+	line-height: 15vh;
 }
 
 .item3 {
@@ -43,6 +45,7 @@ div {
 	height: 5vh;
 	background-color: var(--light_green);
 	margin-left: 1px;
+	line-height: 5vh;
 }
 
 .item4{
@@ -53,6 +56,7 @@ div {
 	top: 15vh;
 	left: 80%;
 	font-size: 1vw;
+	line-height: 60vh;
 }
 
 .item5 {
@@ -62,4 +66,5 @@ div {
 	height: 15vh;
 	top: 85vh;
 	background-color: var(--light_blue);
+	line-height: 15vh;
 }
