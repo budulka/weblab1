@@ -1,0 +1,116 @@
+:root {
+      --default_font: 24px;
+      --light_red: #FFDDDD;
+      --light_blue: #DDDDFF;
+      --light_green: #DDFFDD;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      text-decoration: none;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      font-size: var(--default_font);
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .row1 {
+      display: flex;
+      flex: 0.3;
+      height: 250px;
+      background-color: var(--light_blue);
+    }
+
+    .row2 {
+      display: flex;
+      flex: 0.3;
+    }
+
+    .row3 {
+      display: flex;
+      flex: 0.3;
+    }
+
+    .row4 {
+      display: flex;
+      background-color: var(--light_blue);
+      flex: 0.3;
+      height: 220px;
+      border: 1px solid black;
+      justify-content: flex-start;
+      padding-left: 100px;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    .item1 {
+      width: 300px;
+      background-color: var(--light_red);
+    }
+
+    .item2 {
+      flex: 1.1;
+      background-color: var(--light_blue);
+      justify-content: space-around;
+      padding-left: 250px;
+      height: 200px;
+      border: 1px solid black;
+    }
+
+    .item2 p {
+      background-color: white;
+      width: 300px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid;
+    }
+
+    .item3 {
+      flex: 1.1;
+      background-color: var(--light_green);
+      height: 50px;
+      justify-content: flex-end;
+      padding-right: 10px;
+      border: 1px solid black;
+    }
+
+    .item4 {
+      flex: 0.35;
+      background-color: var(--light_green);
+      justify-content: center;
+    }
+
+    .item5 {
+      flex: 1.1;
+      justify-content: flex-start;
+      padding-left: 10px;
+      height: 575px;
+      display: flex;
+      justify-content: space-around;
+      border: 1px solid black;
+}
+
+  .item6 p {
+      background-color: white;
+      display: flex;
+      width: 300px;
+      height: 50px;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid;
+    }
