@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const items = document.querySelectorAll('.item1, .item2, .item3, .item4, .item5, .item6');
 
-  // Set default black borders
-
   const swapTexts = () => {
     const item2 = document.querySelector('.item2');
     const item6 = document.querySelector('.item6');
@@ -163,9 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const addHoverEffect = () => {
     const item3 = document.querySelector('.item3');
-    let col = 'black';  // Default color
-
-    // Create color radio buttons
+    let col = 'black'; 
     const colors = ['red', 'green', 'blue', 'yellow', 'purple'];
     const colorForm = document.createElement('form');
     colorForm.id = 'colorForm';
@@ -184,13 +180,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     item3.appendChild(colorForm);
 
-    // Event listener for color change
     colorForm.addEventListener('change', (event) => {
       col = event.target.value;
-      localStorage.setItem('borderColor', col);  // Save the selected color
+      localStorage.setItem('borderColor', col);
     });
-
-    // Apply the saved color on page load
     const savedColor = localStorage.getItem('borderColor');
     if (savedColor) {
       col = savedColor;
@@ -210,63 +203,70 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  // New Functionality: Adding images
-
   const addImagesFunctionality = () => {
-    const item1 = document.querySelector('.item1');
-    const item5 = document.querySelector('.item5');
-    const item4 = document.querySelector('.item4');
+	  const item1 = document.querySelector('.item1');
+	  const item4 = document.querySelector('.item4');
+	  const alfredoElement = document.querySelector('.alfredo');
 
-    const form = document.createElement('form');
-    form.id = 'imageForm';
+	  alfredoElement.addEventListener('click', () => {
+	    const selectedText = window.getSelection().toString().trim();  
+	  if (selectedText) {
+	      const existingForm = item1.querySelector('#imageForm');
+	      if (existingForm) {
+		existingForm.remove();
+	      }
 
-    const imageInput = document.createElement('input');
-    imageInput.type = 'text';
-    imageInput.placeholder = 'Enter image URL';
-    imageInput.name = 'imageUrl';
-    imageInput.required = true;
+	      const form = document.createElement('form');
+	      form.id = 'imageForm';
 
-    const submit = document.createElement('button');
-    submit.type = 'submit';
-    submit.textContent = 'Add Image';
+	      const imageInput = document.createElement('input');
+	      imageInput.type = 'text';
+	      imageInput.placeholder = 'Enter image URL';
+	      imageInput.name = 'imageUrl';
+	      imageInput.required = true;
 
-    const clearButton = document.createElement('button');
-    clearButton.textContent = 'Clear Images';
-    clearButton.addEventListener('click', () => {
-      localStorage.removeItem('images');
-      updateImages();
-    });
+	      const submit = document.createElement('button');
+	      submit.type = 'submit';
+	      submit.textContent = 'Add Image';
 
-    form.appendChild(imageInput);
-    form.appendChild(submit);
-    item1.appendChild(form);
-    item1.appendChild(clearButton);
+	      const clearButton = document.createElement('button');
+	      clearButton.textContent = 'Clear Images';
+	      clearButton.addEventListener('click', () => {
+		localStorage.removeItem('images');
+		updateImages();
+	      });
 
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const imageUrl = imageInput.value;
-      let images = JSON.parse(localStorage.getItem('images')) || [];
-      images.push(imageUrl);
-      localStorage.setItem('images', JSON.stringify(images));
-      updateImages();
-      imageInput.value = '';
-    });
+	      form.appendChild(imageInput);
+	      form.appendChild(submit);
+	      item1.appendChild(form);
+	      item1.appendChild(clearButton);
 
-    const updateImages = () => {
-      const images = JSON.parse(localStorage.getItem('images')) || [];
-      item4.innerHTML = ''; // Clear existing images
-      images.forEach(imageUrl => {
-        const img = document.createElement('img');
-        img.src = imageUrl;
-        img.style.width = '100px';
-        img.style.height = '100px';
-        item4.appendChild(img);
-      });
-    };
+	      form.addEventListener('submit', (event) => {
+		event.preventDefault();
+		const imageUrl = imageInput.value;
+		let images = JSON.parse(localStorage.getItem('images')) || [];
+		images.push(imageUrl);
+		localStorage.setItem('images', JSON.stringify(images));
+		updateImages();
+		imageInput.value = '';
+	      });
 
-    updateImages(); // Load stored images on page load
-  };
+	      const updateImages = () => {
+		const images = JSON.parse(localStorage.getItem('images')) || [];
+		item4.innerHTML = ''; 
+		images.forEach(imageUrl => {
+		  const img = document.createElement('img');
+		  img.src = imageUrl;
+		  img.style.width = '100px';
+		  img.style.height = '100px';
+		  item4.appendChild(img);
+		});
+	      };
 
+	      updateImages(); 
+	    }
+	  });
+	}; 
   calculateRhombus();
   maxNumber();
   removeCookies();
@@ -278,4 +278,3 @@ document.addEventListener('DOMContentLoaded', () => {
     item.style.border = '2px solid black';
   });
 });
-
