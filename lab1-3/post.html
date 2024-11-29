@@ -1,5 +1,5 @@
 <head>
-	<meta charset ="UTF-8">
+	<meta charset="UTF-8">
 	<style>
 		body {
 			margin: 0;
@@ -17,8 +17,9 @@
 		}
 		.blue {
 			background-color: #DDDDFF;
-			position: relative;
+			overflow: hidden;
 			height: 20%;
+			position: relative;
 		}
 		.red {
 			background-color: #FFDDDD;
@@ -35,21 +36,29 @@
 		}
 
 		.text_block1 {
-            		background-color: white;
-            		padding: 20px;
-            		width: 100px;
-            		margin-right: 100px;
-			margin-left:auto;
+			background-color: white;
+			padding: 20px;
+			width: 100px;
+			margin-right: 100px;
+			margin-left: auto;
 			border: 1px solid black;
-        	}
+		}
 
 		.text_block2 {
 			background-color: white;
 			padding: 20px;
 			width: 100px;
-			margin-left: 100px;
-			margin-right: auto;
+			margin-right: 800px;
 			border: 1px solid black;
+			display: inline-block;
+			vertical-align: middle; 
+		}
+
+		.blue p {
+			width: 100px;
+			margin-left: 400px;
+			display: inline-block; 
+			vertical-align: middle;
 		}
 	</style>
 </head>
@@ -57,18 +66,22 @@
 <body>
 	<table>
 		<tr>
-			<td rowspan="3" class = "red">бпк</td>
-			<td colspan="2" class = "blue"> <div class = "text_block1"> i love anime </div> </td>
+			<td rowspan="3" class="red">бпк</td>
+			<td colspan="2" class="blue"> <div class="text_block1"> test </div> </td>
 		</tr>
 		<tr>
-			<td class = "item3">бпк</td>
-			<td rowspan="2" class = "green">бпк</td>
+			<td class="item3">бпк</td>
+			<td rowspan="2" class="green">бпк</td>
 		</tr>
 		<tr>
-			<td class = "big_guy"> megabipki</td>
+			<td class="big_guy"> am </td>
 		</tr>
 		<tr>
-			<td colspan = "3" class = "blue"> <div class = "text_block2"> i love anime very much </div> </td>
+			<td colspan="3" class="blue">
+				<div class="text_block2"> test </div>
+				<p> aaa </p>
+			</td>
 		</tr>
 	</table>
 </body>
+
