@@ -96,7 +96,7 @@ body {
 	margin-right: 10%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 860px) {
     body {
         height: 100%;
         margin: 0;
