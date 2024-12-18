@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="lab1.css">
+    <title>Lab 1 with Object Creation</title>
+    <style>
+        #objectForm { display: flex; flex-direction: column; gap: 10px; }
+        #objectList { margin-top: 20px; }
+        .object-item { 
+            border: 1px solid #ddd; 
+            padding: 10px; 
+            margin-bottom: 10px; 
+            display: flex; 
+            justify-content: space-between; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item1 common-item">
+            Image page
+        </div>
+        <div class="item2 common-item">
+            <p> Біпки!</p>
+            What's that?
+        </div>
+        <div class="item3 common-item">
+            Купив мужик шляпу, а вона йому як раз!
+        </div>
+        <div class="item4 common-item">
+            <menu>
+                <a href="index.html">to main page</a><br>
+                <a href="lab1-2.html"> to lists</a><br>
+                <a href="lab1-4.html">to Wood</a>
+            </menu>
+        </div>
+        <div class="item5 common-item">
+            <!-- Object Creation Block -->
+            <div id="objectCreation">
+                <h2>Створення Технічних Об'єктів</h2>
+                <form id="objectForm">
+                    <input type="text" id="name" placeholder="Назва об'єкта" required>
+                    <input type="number" id="power" placeholder="Потужність (Вт)" required>
+                    <input type="number" id="voltage" placeholder="Напруга (В)" required>
+                    <select id="category">
+                        <option value="побутова техніка">Побутова техніка</option>
+                        <option value="електроніка">Електроніка</option>
+                        <option value="промислове обладнання">Промислове обладнання</option>
+                    </select>
+                    <button type="submit">Додати Об'єкт</button>
+                </form>
+                <div id="objectList"></div>
+                <button id="saveObjects">Зберегти Об'єкти</button>
+            </div>
+        </div>
+        <div class="item6 common-item">
+            <p> Шушунчик! </p>
+            Lorem ipsum
+        </div>
+    </div>
+
+    <script>
+        class TechnicalObject {
+            constructor(name, power, voltage, category) {
+                this.id = Date.now();
+                this.name = name;
+                this.power = power;
+                this.voltage = voltage;
+                this.category = category;
+            }
+        }
+
+        class ObjectManager {
+            constructor() {
+                this.objects = JSON.parse(localStorage.getItem('technicalObjects')) || [];
+            }
+
+            addObject(object) {
+                this.objects.push(object);
+                this.updateLocalStorage();
+                this.renderObjects();
+            }
+
+            removeObject(id) {
+                this.objects = this.objects.filter(obj => obj.id !== id);
+                this.updateLocalStorage();
+                this.renderObjects();
+            }
+
+            updateLocalStorage() {
+                localStorage.setItem('technicalObjects', JSON.stringify(this.objects));
+            }
+
+            renderObjects() {
+                const objectList = document.getElementById('objectList');
+                objectList.innerHTML = '';
+                this.objects.forEach(obj => {
+                    const objectDiv = document.createElement('div');
+                    objectDiv.classList.add('object-item');
+                    objectDiv.innerHTML = `
+                        <span>${obj.name} (${obj.category}): 
+                            ${obj.power}Вт, ${obj.voltage}В
+                        </span>
+                        <button onclick="objectManager.removeObject(${obj.id})">Видалити</button>
+                    `;
+                    objectList.appendChild(objectDiv);
+                });
+            }
+        }
+
+        const objectManager = new ObjectManager();
+        objectManager.renderObjects();
+
+        document.getElementById('objectForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const power = document.getElementById('power').value;
+            const voltage = document.getElementById('voltage').value;
+            const category = document.getElementById('category').value;
+            const newObject = new TechnicalObject(name, power, voltage, category);
+            objectManager.addObject(newObject);
+            e.target.reset();
+        });
+
+        document.getElementById('saveObjects').addEventListener('click', () => {
+            alert('Об\'єкти збережено в локальному сховищі');
+        });
+    </script>
+</body>
+</html>
+

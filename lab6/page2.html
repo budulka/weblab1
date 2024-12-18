@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Перегляд Об'єктів</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        #objectDisplay { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+            gap: 15px; 
+        }
+        .object-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .object-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h2>Технічні Об'єкти</h2>
+    <div id="objectDisplay"></div>
+    <div id="updateInfo"></div>
+
+    <script>
+        class ObjectViewer {
+            constructor() {
+                this.objectDisplay = document.getElementById('objectDisplay');
+                this.updateInfoElement = document.getElementById('updateInfo');
+                this.lastUpdateTime = null;
+                this.startPeriodicUpdate();
+            }
+
+            renderObjects() {
+                const objects = JSON.parse(localStorage.getItem('technicalObjects')) || [];
+                this.objectDisplay.innerHTML = '';
+
+                objects.forEach(obj => {
+                    const card = document.createElement('div');
+                    card.classList.add('object-card');
+                    card.innerHTML = `
+                        <h3>${obj.name}</h3>
+                        <p>Категорія: ${obj.category}</p>
+                        <p>Потужність: ${obj.power} Вт</p>
+                        <p>Напруга: ${obj.voltage} В</p>
+                    `;
+                    this.objectDisplay.appendChild(card);
+                });
+            }
+
+            startPeriodicUpdate() {
+                setInterval(() => {
+                    const currentObjects = JSON.parse(localStorage.getItem('technicalObjects')) || [];
+                    const currentUpdateTime = localStorage.getItem('lastUpdateTime');
+
+                    if (currentUpdateTime !== this.lastUpdateTime) {
+                        this.renderObjects();
+                        this.lastUpdateTime = currentUpdateTime;
+                        this.updateInfoElement.textContent = 
+                            `Останнє оновлення: ${new Date().toLocaleString()}`;
+                    }
+                }, 3000); // Перевірка кожні 3 секунди
+            }
+        }
+
+        const objectViewer = new ObjectViewer();
+        objectViewer.renderObjects();
+
+        // Listener для міжсторінкового оновлення
+        window.addEventListener('storage', (event) => {
+            if (event.key === 'technicalObjects') {
+                objectViewer.renderObjects();
+            }
+        });
+    </script>
+</body>
+</html>
